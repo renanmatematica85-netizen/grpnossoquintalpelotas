@@ -415,8 +415,8 @@
     display: grid;
     grid-template-columns: 80px 1fr auto;
     align-items: center;
-    gap: 2rem;
-    padding: 1.5rem 0;
+    gap: 1.5rem;
+    padding: 1.2rem 0.5rem;
     border-bottom: 1px solid rgba(200,150,30,0.12);
     transition: background .2s;
   }
@@ -444,15 +444,19 @@
   }
   .show-local { font-size: 0.82rem; color: rgba(245,237,216,0.5); }
   .show-btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border: 1px solid rgba(200,150,30,0.4);
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.55rem 1.2rem;
+    background: var(--ouro);
+    border: none;
     border-radius: 50px;
-    color: var(--ouro); font-size: 0.78rem;
+    color: var(--preto);
+    font-size: 0.75rem; font-weight: 700;
     text-decoration: none; white-space: nowrap;
-    transition: background .2s, color .2s;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    text-align: center;
   }
-  .show-btn:hover { background: var(--ouro); color: var(--preto); }
+  .show-btn:hover { background: var(--ouro2); transform: scale(1.04); }
   .agenda-empty {
     text-align: center; padding: 4rem 1rem;
     color: rgba(245,237,216,0.3);
@@ -620,8 +624,17 @@
     .fotos-grid { grid-template-columns: repeat(2,1fr); }
     .videos-grid { grid-template-columns: 1fr; }
     .contato-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .show-item { grid-template-columns: 60px 1fr; }
-    .show-btn { display: none; }
+    .show-item {
+      grid-template-columns: 55px 1fr auto;
+      gap: 0.5rem 0.8rem;
+      align-items: center;
+    }
+    .show-item .show-btn {
+      display: inline-flex !important;
+      font-size: 0.68rem;
+      padding: 0.45rem 0.8rem;
+    }
+    .porto-reserva { justify-self: end; }
   }
   @media (max-width: 480px) {
     .integrantes-grid { grid-template-columns: 1fr; }
@@ -888,6 +901,14 @@
   @media (max-width: 768px) {
     .videos-grid { grid-template-columns: 1fr !important; }
   }
+
+  .video-thumb-link { position: relative; display: block; aspect-ratio: 9/16; overflow: hidden; }
+  .video-thumb-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+  .video-thumb-link:hover .video-thumb-img { transform: scale(1.04); }
+  .video-play-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; }
+  .video-thumb-link:hover .video-play-overlay { background: rgba(0,0,0,0.5); }
+  .video-play-btn { width:70px; height:70px; border-radius:50%; background:rgba(200,150,30,0.85); display:flex; align-items:center; justify-content:center; transition:transform .2s; }
+  .video-thumb-link:hover .video-play-btn { transform: scale(1.1); }
 </style>
 </head>
 <body>
@@ -1068,54 +1089,50 @@
     <div class="videos-grid">
 
       <div class="video-item">
-        <div class="video-yt-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/E1n0mGoOvGA"
-            title="Beco da Beth"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <a href="https://youtube.com/shorts/E1n0mGoOvGA" target="_blank" class="video-thumb-link">
+          <img src="https://img.youtube.com/vi/E1n0mGoOvGA/hqdefault.jpg" alt="Beco da Beth" class="video-thumb-img">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </a>
         <p class="video-legenda">Beco da Beth</p>
       </div>
 
       <div class="video-item">
-        <div class="video-yt-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/V8AGdkwovdQ"
-            title="Beco da Beth 2"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <a href="https://youtube.com/shorts/V8AGdkwovdQ" target="_blank" class="video-thumb-link">
+          <img src="https://img.youtube.com/vi/V8AGdkwovdQ/hqdefault.jpg" alt="Beco da Beth 2" class="video-thumb-img">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </a>
         <p class="video-legenda">Beco da Beth 2</p>
       </div>
 
       <div class="video-item">
-        <div class="video-yt-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/u0U3SPK0PWk"
-            title="Porto do Lanche"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <a href="https://youtube.com/shorts/u0U3SPK0PWk" target="_blank" class="video-thumb-link">
+          <img src="https://img.youtube.com/vi/u0U3SPK0PWk/hqdefault.jpg" alt="Porto do Lanche" class="video-thumb-img">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </a>
         <p class="video-legenda">Porto do Lanche</p>
       </div>
 
       <div class="video-item">
-        <div class="video-yt-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/aO_kEnZbSuE"
-            title="Porto do Lanche 2"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <a href="https://youtube.com/shorts/aO_kEnZbSuE" target="_blank" class="video-thumb-link">
+          <img src="https://img.youtube.com/vi/aO_kEnZbSuE/hqdefault.jpg" alt="Porto do Lanche 2" class="video-thumb-img">
+          <div class="video-play-overlay">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </a>
         <p class="video-legenda">Porto do Lanche 2</p>
       </div>
 
@@ -1138,7 +1155,7 @@
           <div class="show-nome">Bar Amizade</div>
           <div class="show-local">📍 Pelotas, RS</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre o show do dia 17/06." class="show-btn" target="_blank">Reservar mesa</a>
+        <a href="https://wa.me/5553991060451?text=Olá! Quero saber mais sobre o show do dia 17/06 no Bar Amizade!" class="show-btn" target="_blank">Reservar mesa</a>
       </div>
 
       <div class="show-item">
@@ -1150,19 +1167,19 @@
           <div class="show-nome">Goordas</div>
           <div class="show-local">📍 Pelotas, RS</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre o show do dia 25/06." class="show-btn" target="_blank">Reservar mesa</a>
+        <a href="https://wa.me/5553991060451?text=Olá! Quero saber mais sobre o show do dia 25/06 nas Goordas!" class="show-btn" target="_blank">Reservar mesa</a>
       </div>
 
       <div class="show-item">
         <div class="show-data">
           <div class="show-dia">26</div>
-          <div class="show-mC:">Jun</div>
+          <div class="show-mes">Jun</div>
         </div>
         <div class="show-info">
           <div class="show-nome">Beco da Beth</div>
           <div class="show-local">📍 Pelotas, RS</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre o show do dia 26/06." class="show-btn" target="_blank">Reservar mesa</a>
+        <a href="https://wa.me/5553991060451?text=Olá! Quero saber mais sobre o show do dia 26/06 no Beco da Beth!" class="show-btn" target="_blank">Reservar mesa</a>
       </div>
 
       <div class="show-item">
@@ -1174,7 +1191,19 @@
           <div class="show-nome">Roda de Samba na Rua</div>
           <div class="show-local">📍 Pelotas, RS</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre a roda do dia 28/06." class="show-btn" target="_blank">Reservar mesa</a>
+        <a href="https://wa.me/5553991060451?text=Olá! Quero saber mais sobre a Roda de Samba na Rua do dia 28/06!" class="show-btn" target="_blank">Reservar mesa</a>
+      </div>
+
+      <div class="show-item">
+        <div class="show-data">
+          <div class="show-dia">03</div>
+          <div class="show-mes">Jul</div>
+        </div>
+        <div class="show-info">
+          <div class="show-nome">Goordas</div>
+          <div class="show-local">📍 Pelotas, RS</div>
+        </div>
+        <a href="https://wa.me/5553999047676?text=Olá! Quero saber mais sobre o show do dia 03/07 nas Goordas!" class="show-btn" target="_blank">Reservar mesa</a>
       </div>
 
       <div class="show-item">
@@ -1186,7 +1215,7 @@
           <div class="show-nome">Aniversário — Show Especial</div>
           <div class="show-local">📍 Pelotas, RS &nbsp;·&nbsp; 🕛 12h00</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre o show do dia 26/07." class="show-btn" target="_blank">Reservar mesa</a>
+        <a href="https://wa.me/5553991060451?text=Olá! Quero saber mais sobre o show de Aniversário do dia 26/07!" class="show-btn" target="_blank">Reservar mesa</a>
       </div>
 
       <div class="show-item">
@@ -1198,7 +1227,7 @@
           <div class="show-nome">ASUFPEL — Sede Campestre</div>
           <div class="show-local">📍 Pelotas, RS</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre o show do dia 02/08." class="show-btn" target="_blank">Reservar mesa</a>
+        <a href="https://wa.me/5553991060451?text=Olá! Quero saber mais sobre o show do dia 02/08 na ASUFPEL!" class="show-btn" target="_blank">Reservar mesa</a>
       </div>
 
       <div class="show-item">
@@ -1210,7 +1239,7 @@
           <div class="show-nome">Feijoada — Centro de Luz</div>
           <div class="show-local">📍 Pelotas, RS</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre o show do dia 16/08." class="show-btn" target="_blank">Reservar mesa</a>
+        <a href="https://wa.me/5553991060451?text=Olá! Quero saber mais sobre a Feijoada do dia 16/08 no Centro de Luz!" class="show-btn" target="_blank">Reservar mesa</a>
       </div>
 
       <div class="show-item">
@@ -1222,8 +1251,16 @@
           <div class="show-nome">Porto do Lanche</div>
           <div class="show-local">📍 Pelotas, RS</div>
         </div>
-        <a href="https://wa.me/55SEUNUMERO?text=Olá! Vi a agenda e quero saber mais sobre o show do dia 29/08." class="show-btn" target="_blank">Reservar mesa</a>
+        <div class="porto-reserva">
+          <button class="show-btn" onclick="togglePorto(this)">Reservar mesa</button>
+          <div class="porto-telefones" style="display:none;">
+            <a href="tel:+555333038749" class="show-btn">☎ (53) 3303-8749</a>
+            <a href="tel:+555332222958" class="show-btn">☎ (53) 3222-2958</a>
+          </div>
+        </div>
       </div>
+
+    </div>
 
     </div>
     <div class="agenda-empty" style="margin-top:1rem;">
@@ -1239,7 +1276,7 @@
       <div class="contato-info">
         <span class="section-label">Entre em Contato</span>
         <h2 class="section-title">Vamos levar o samba pro seu evento?</h2>
-        <p>Shows, rodas de samba, eventos corporativos, casamentos e celebrações. Fale com a gente e vamos criar uma experiência inesquecível.</p>
+        <p style="text-align: justify;">Shows, rodas de samba, eventos corporativos, casamentos e celebrações. Fale com a gente e vamos criar uma experiência inesquecível.</p>
         <div class="cta-stack">
           <a href="https://wa.me/55SEUNUMERO?text=Olá! Quero contratar o Grupo Nosso Quintal!" target="_blank" class="cta-wpp" style="justify-content:center; text-align:center;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -1258,10 +1295,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             <span style="font-size:.9rem;">@gruponossoquintal</span>
           </a>
-          <a href="#" target="_blank" style="display:flex;align-items:center;gap:1rem;color:var(--creme);text-decoration:none;opacity:.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-            <span style="font-size:.9rem;">Grupo Nosso Quintal no YouTube</span>
-          </a>
+          
         </div>
       </div>
     </div>
@@ -1499,6 +1533,19 @@
       document.body.style.overflow = '';
     };
   })();
+</script>
+
+<script>
+  function togglePorto(btn) {
+    var tel = btn.nextElementSibling;
+    if (tel.style.display === 'none') {
+      tel.style.display = 'flex';
+      btn.textContent = 'Fechar ✕';
+    } else {
+      tel.style.display = 'none';
+      btn.textContent = 'Reservar mesa';
+    }
+  }
 </script>
 </body>
 </html>
